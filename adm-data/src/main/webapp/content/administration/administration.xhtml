@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>Hello World PrimeFaces</h1>
+
+	<h:form id="administrationFormId">
+	
+	<p:growl id="growl" showDetail="true" life="3000" />
+	
+		<p:commandButton value="Add" action="#{administrationView.addUserAction}" id="addUserId" update="growl" style="margin-right:20px;" title="Add User" />
+		<p:commandButton value="Delete" action="#{administrationView.deleteUserAction}" id="deleteUserId" update="growl" style="margin-right:20px;" title="Delete User" />
+		
+		<p:dataTable id="usersTableId" var="user" value="#{administrationView.usersList}">
+			<p:column headerText="Id">
+				<h:outputText value="#{user.id}" />
+			</p:column>
+
+			<p:column headerText="Username">
+				<h:outputText value="#{user.username}" />
+			</p:column>
+
+			<p:column headerText="Password">
+				<h:outputText value="#{user.password}" />
+			</p:column>
+
+			<p:column headerText="Role">
+				<h:outputText value="#{user.role}" />
+			</p:column>
+
+			<p:column headerText="Name">
+				<h:outputText value="#{user.userdescription.name}" />
+			</p:column>
+
+			<p:column headerText="Age">
+				<h:outputText value="#{user.userdescription.age}" />
+			</p:column>
+
+			<p:column headerText="Jobs">
+				<p:selectOneMenu id="jobs">
+					<f:selectItems value="#{user.jobs}" var="job" itemLabel="#{job.job.name}" itemValue="#{job}" />	
+				</p:selectOneMenu>
+			</p:column>
+
+			<p:column headerText="Meetings">
+				<p:selectOneMenu id="meeting">
+					<f:selectItems value="#{user.meetings}" var="meeting" itemLabel="#{meeting.name}" itemValue="#{meeting}" />	
+				</p:selectOneMenu>
+			</p:column>
+
+		</p:dataTable>
+
+	</h:form>
+
+</h:body>
+</html>

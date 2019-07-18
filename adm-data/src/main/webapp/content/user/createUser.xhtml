@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+
+	<h:form>
+
+		<p:growl id="growl" showDetail="true" sticky="true" />
+
+		<p:panel header="Create New User">
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<h:outputLabel for="name" value="Name: " />
+				<p:inputText id="name" value="#{createUserView.name}" label="Name"
+					required="true" />
+
+				<p:outputLabel for="username" value="Username:" />
+				<p:inputText id="username" value="#{createUserView.username}"
+					required="true" />
+
+				<h:outputLabel for="password1" value="Password : *" />
+				<p:password id="password1" value="#{createUserView.password}"
+					match="password2" label="Password 1" required="true" />
+
+				<h:outputLabel for="password2" value="Password Again: *" />
+				<p:password id="password2" value="#{createUserView.password2}"
+					label="Password 2" required="true" />
+
+				<h:outputLabel for="role" value="Role: " />
+				<p:inputText id="role" value="#{createUserView.role}" label="Role"
+					required="true" />
+
+				<h:outputLabel for="age" value="Age: " />
+				<p:inputText id="age" value="#{createUserView.age}" label="Age: "
+					required="true" />
+
+			</h:panelGrid>
+
+			<p:commandButton value="Create User"
+				actionListener="#{createUserView.createUser}" update="growl" id="createUser"
+			 oncomplete="handleLoginRequest(xhr, status, args)"/>
+
+		</p:panel>
+
+	</h:form>
+
+</h:body>
+</html>

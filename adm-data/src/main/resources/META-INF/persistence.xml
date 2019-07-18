@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+    version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+
+     <!-- EDU MSG Administration Databank -->
+     <persistence-unit name="edu.msg.Administration.postgres" transaction-type="JTA">
+     	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>jdbc/edu_msg_administration_postgres</jta-data-source>
+
+        <class>com.msg.adm.model.UserEntity</class>
+        <class>com.msg.adm.model.MeetingEntity</class>
+        <class>com.msg.adm.model.UserDescriptionEntity</class>
+        <class>com.msg.adm.model.JobEntity</class>
+        <class>com.msg.adm.model.AppliedJobEntity</class>
+
+         <exclude-unlisted-classes>true</exclude-unlisted-classes>
+         <!-- Avtivate Shared Cache JUST for marked Entities! -->
+         <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+        <properties>
+            <!-- Needed for native Queries: to solve "The primary key read from the row [DatabaseRecord(...)] during the execution of the query was detected to be null." errors.-->
+            <property name="eclipselink.jpa.uppercase-column-names" value="true"/>
+        	<property name="eclipselink.target-database" value="PostgreSQL" />
+            <property name="eclipselink.logging.parameters" value="true" />
+            <property name="eclipselink.logging.level" value="SEVERE" />
+            <property name="eclipselink.logging.sql" value="SEVERE" />
+            <!-- IF YOU WANT TO LOG THE SQL's SET THE VALUE TO FINE for the next property -->
+            <property name="eclipselink.logging.level.sql" value="SEVERE" />
+            <property name="eclipselink.deploy-on-startup" value="false" />
+            <!--  property name="eclipselink.ddl-generation" value="create-tables" />
+            <property name="eclipselink.ddl-generation.output-mode" value="database"/>-->
+        </properties>
+    </persistence-unit>
+
+</persistence>

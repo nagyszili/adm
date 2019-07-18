@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+
+	<h:form>
+
+		<p:growl id="growl" showDetail="true" sticky="true" />
+
+		<p:panel header="Absence Excuse">
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<h:outputLabel for="startDate" value="Start Date: " />
+				<p:calendar  id="startDate" required="true" />
+
+				<h:outputLabel for="startHour" value="Start Hour :" />
+			    <p:calendar  id="startHour" required="true" showTime="true" pattern="MM/dd/yyyy HH:mm:ss"/> 
+			
+
+				<h:outputLabel for="endHour" value="End Hour:" />
+				<p:calendar  id="endHour" required="true" showTime="true" pattern="MM/dd/yyyy HH:mm:ss"/>
+				
+
+				<h:outputLabel for="reason" value="Reason: " />
+				<p:inputTextarea rows="5" cols="30" maxlength="200" autoResize="false" />
+				
+				<h:outputLabel for="replacement" value="Replacement: " />
+				<p:inputText id="replacement" required="true"/>
+
+			</h:panelGrid>
+
+			<p:commandButton value="OK"
+				update="@form"
+				id="ok" />
+				
+			<p:commandButton value="Cancel"
+				onclick="window.location.reload();"
+				id="cancel" />
+
+		</p:panel>
+
+	</h:form>
+
+</h:body>
+</html>
