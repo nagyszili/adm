@@ -107,6 +107,16 @@ public class AdministrationView {
 			addMessage(e.getMessage());
 		}
 	}
+	
+	public void createJob() {
+		try {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.getExternalContext().redirect("../../content/administration/createJob.xhtml");
+
+		} catch (IOException e) {
+			addMessage(e.getMessage());
+		}
+	}
 
 	/**
 	 * Creates a new {@link FacesMessage} and adds it to the {@link FacesContext}.

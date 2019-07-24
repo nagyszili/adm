@@ -6,6 +6,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+
+import com.msg.adm.business.AbsenceService;
+import com.msg.adm.business.data.Absence;
 
 @ManagedBean
 @ViewScoped
@@ -15,15 +19,24 @@ public class AbsenceView {
 	private Date startHour;
 	private Date endHour;
 	private String reason;
-	private Integer replacement;
+	private Long replacementId;
+	private Date createDate;
+	
+	@Inject
+	private AbsenceService absenceService;
+	
+	public AbsenceView() {
+		
+	}
 
-	public AbsenceView(Date startDate, Date startHour, Date endHour, String reason, Integer replacement) {
+	public AbsenceView(Date startDate, Date startHour, Date endHour, String reason, Long replacementId) {
 		super();
 		this.startDate = startDate;
 		this.startHour = startHour;
 		this.endHour = endHour;
 		this.reason = reason;
-		this.replacement = replacement;
+		this.replacementId = replacementId;
+		this.createDate = new Date();
 	}
 
 	public Date getStartDate() {
@@ -58,15 +71,24 @@ public class AbsenceView {
 		this.reason = reason;
 	}
 
-	public Integer getReplacement() {
-		return replacement;
+	public Long getReplacementId() {
+		return replacementId;
 	}
 
-	public void setReplacement(Integer replacement) {
-		this.replacement = replacement;
+	public void setReplacementId(Long replacementId) {
+		this.replacementId = replacementId;
 	}
 
 	public void addAbsence() {
+		Absence absence = new Absence();
+		absence.setStartDate(startDate);
+		absence.setStartHour(startHour);
+		absence.setEndHour(endHour);
+		absence.setReason(reason);
+		absence.setReplacementId(replacementId);
+		
+		absenceService.createAbsence(absence);
+		
 
 	}
 

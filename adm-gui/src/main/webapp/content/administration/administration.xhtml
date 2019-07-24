@@ -26,8 +26,11 @@
 			action="#{administrationView.deleteUserAction}" id="deleteUserId"
 			update="growl" style="margin-right:20px;" title="Delete User" />
 		<p:commandButton value="Absence"
-			action="#{administrationView.absenceAction}"
-			update="growl" style="margin-right:20px;"/>
+			action="#{administrationView.absenceAction}" update="growl"
+			style="margin-right:20px;" />
+		<p:commandButton value="Create Job"
+			action="#{administrationView.createJob}" update="growl"
+			style="margin-right:20px;" />
 
 
 		<p:dataTable id="usersTableId" var="user"
@@ -58,8 +61,7 @@
 
 			<p:column headerText="Jobs">
 				<p:selectOneMenu id="jobs">
-					<f:selectItems value="#{user.jobs}" var="job"
-						itemLabel="#{job.job.name}" itemValue="#{job}" />
+					<f:selectItems var="job" itemLabel="#{job.job.name}" />
 				</p:selectOneMenu>
 			</p:column>
 
@@ -74,9 +76,9 @@
 				<p:commandButton
 					actionListener="#{administrationView.editUserAction(user.id)}"
 					value="Edit" title="Edit" icon="fa fa-fw fa-edit">
-					   <f:param name = "userId" value = "#{user.id}" />
-					
-			    </p:commandButton> 
+					<f:param name="userId" value="#{user.id}" />
+
+				</p:commandButton>
 			</p:column>
 
 

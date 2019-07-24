@@ -9,7 +9,7 @@ import com.msg.adm.model.JobEntity;
 public class Job extends AbstractPojo {
 
 	private String name;
-	private int salary;
+//	private int salary;
 	
 	/**
 	 * @return the name
@@ -25,25 +25,25 @@ public class Job extends AbstractPojo {
 		this.name = name;
 	}
 	
-	/**
-	 * @return the salary
-	 */
-	public int getSalary() {
-		return salary;
-	}
-	
-	/**
-	 * @param salary the salary to set
-	 */
-	public void setSalary(int salary) {
-		this.salary = salary;
-	}
+//	/**
+//	 * @return the salary
+//	 */
+//	public int getSalary() {
+//		return salary;
+//	}
+//	
+//	/**
+//	 * @param salary the salary to set
+//	 */
+//	public void setSalary(int salary) {
+//		this.salary = salary;
+//	}
 	
 	public static Job getJob(JobEntity jobEntity ) {
 		Job job = new Job();
 		job.setId(jobEntity.getId());
 		job.setName(jobEntity.getName());
-		job.setSalary(jobEntity.getSalary());
+//		job.setSalary(jobEntity.getSalary());
 		
 		return job;
 	}

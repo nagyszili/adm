@@ -13,6 +13,7 @@
         <class>com.msg.adm.model.UserDescriptionEntity</class>
         <class>com.msg.adm.model.JobEntity</class>
         <class>com.msg.adm.model.AppliedJobEntity</class>
+        <class>com.msg.adm.model.AbsenceEntity</class>
 
          <exclude-unlisted-classes>true</exclude-unlisted-classes>
          <!-- Avtivate Shared Cache JUST for marked Entities! -->

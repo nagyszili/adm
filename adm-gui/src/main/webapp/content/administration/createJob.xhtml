@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+
+	<h:form>
+
+		<p:growl id="growl" showDetail="true" sticky="true" />
+
+		<p:panel header="Create Job">
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<h:outputLabel for="name" value="Name: " />
+				<p:inputText id="name" label="name" required="true" />
+
+				<h:outputLabel for="description" value="Description: " />
+				<p:inputText id="description" label="description" required="true" />
+
+			</h:panelGrid>
+
+			<p:commandButton value="OK" update="@form" id="ok" />
+
+			<p:commandButton value="Back" onclick="window.history.back();" />
+
+		</p:panel>
+
+	</h:form>
+
+</h:body>
+</html>

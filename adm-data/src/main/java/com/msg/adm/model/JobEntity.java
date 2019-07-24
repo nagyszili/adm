@@ -21,7 +21,7 @@ public class JobEntity implements Serializable {
 	
 	private Long id;
 	private String name;
-	private int salary;
+//	private int salary;
 	
 	@Id
     @GeneratedValue(generator = "job_id_seq", strategy = GenerationType.SEQUENCE)
@@ -41,13 +41,13 @@ public class JobEntity implements Serializable {
 		this.name = name;
 	}
 
-	public int getSalary() {
-		return salary;
-	}
-
-	public void setSalary(int salary) {
-		this.salary = salary;
-	}
+//	public int getSalary() {
+//		return salary;
+//	}
+//
+//	public void setSalary(int salary) {
+//		this.salary = salary;
+//	}
 
 
 	

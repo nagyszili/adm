@@ -74,9 +74,7 @@ public class EditUserView {
 			user.setPassword(hashPassword);
 
 			usersService.editUser(user);
-
 		}
-
 	}
 
 	/**

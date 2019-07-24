@@ -26,9 +26,6 @@ import com.msg.adm.persistence.UserDescriptionBean;
 @Stateless
 public class UsersService {
 
-	// @Inject
-	// private transient Logger logger;
-
 	@Inject
 	private UserBean userBean;
 
