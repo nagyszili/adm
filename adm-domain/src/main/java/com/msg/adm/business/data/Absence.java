@@ -15,7 +15,6 @@ public class Absence extends AbstractPojo {
 
 	public Absence() {
 		this.createdDate = new Date();
-
 	}
 
 	public Absence(Long id) {

@@ -20,24 +20,10 @@ public class AbsenceView {
 	private Date endHour;
 	private String reason;
 	private Long replacementId;
-	private Date createDate;
 	
 	@Inject
 	private AbsenceService absenceService;
-	
-	public AbsenceView() {
-		
-	}
 
-	public AbsenceView(Date startDate, Date startHour, Date endHour, String reason, Long replacementId) {
-		super();
-		this.startDate = startDate;
-		this.startHour = startHour;
-		this.endHour = endHour;
-		this.reason = reason;
-		this.replacementId = replacementId;
-		this.createDate = new Date();
-	}
 
 	public Date getStartDate() {
 		return startDate;
@@ -78,7 +64,7 @@ public class AbsenceView {
 	public void setReplacementId(Long replacementId) {
 		this.replacementId = replacementId;
 	}
-
+	
 	public void addAbsence() {
 		Absence absence = new Absence();
 		absence.setStartDate(startDate);
@@ -86,6 +72,7 @@ public class AbsenceView {
 		absence.setEndHour(endHour);
 		absence.setReason(reason);
 		absence.setReplacementId(replacementId);
+		absence.setCreatedDate(new Date());
 		
 		absenceService.createAbsence(absence);
 		

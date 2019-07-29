@@ -9,44 +9,43 @@ import com.msg.adm.model.JobEntity;
 public class Job extends AbstractPojo {
 
 	private String name;
-//	private int salary;
-	
+	private String description;
+
 	/**
 	 * @return the name
 	 */
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-//	/**
-//	 * @return the salary
-//	 */
-//	public int getSalary() {
-//		return salary;
-//	}
-//	
-//	/**
-//	 * @param salary the salary to set
-//	 */
-//	public void setSalary(int salary) {
-//		this.salary = salary;
-//	}
-	
-	public static Job getJob(JobEntity jobEntity ) {
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public static Job getJob(JobEntity jobEntity) {
 		Job job = new Job();
 		job.setId(jobEntity.getId());
 		job.setName(jobEntity.getName());
-//		job.setSalary(jobEntity.getSalary());
-		
+		job.setDescription(jobEntity.getDescription());
+
 		return job;
 	}
-	
-	
+
 }

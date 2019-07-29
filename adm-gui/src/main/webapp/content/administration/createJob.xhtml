@@ -20,14 +20,17 @@
 			<h:panelGrid columns="2" cellpadding="5">
 
 				<h:outputLabel for="name" value="Name: " />
-				<p:inputText id="name" label="name" required="true" />
+				<p:inputText id="name" label="name" required="true"
+					value="#{createJobView.name}" />
 
 				<h:outputLabel for="description" value="Description: " />
-				<p:inputText id="description" label="description" required="true" />
+				<p:inputTextarea rows="5" cols="30" maxlength="200"
+					autoResize="false" value="#{createJobView.description}" />
 
 			</h:panelGrid>
 
-			<p:commandButton value="OK" update="@form" id="ok" />
+			<p:commandButton value="OK" update="@form" id="ok"
+				actionListener="#{createJobView.createJob}" />
 
 			<p:commandButton value="Back" onclick="window.history.back();" />
 

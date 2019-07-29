@@ -16,6 +16,7 @@ public class AbsenceService {
 	
 	public void createAbsence(Absence absence) {
 		AbsenceEntity newAbsenceEntity = new AbsenceEntity();
+		newAbsenceEntity.setId(absence.getId());
 		newAbsenceEntity.setUserId(absence.getUserId());
 		newAbsenceEntity.setStartDate(absence.getStartDate());
 		newAbsenceEntity.setStartHour(absence.getStartHour());

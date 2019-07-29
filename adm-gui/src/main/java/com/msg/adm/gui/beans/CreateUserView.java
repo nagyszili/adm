@@ -32,9 +32,6 @@ public class CreateUserView {
 	private String name;
 	private Integer age;
 
-//	@Inject
-//	private UserBean userBean;
-
 	@Inject
 	private UsersService usersService;
 

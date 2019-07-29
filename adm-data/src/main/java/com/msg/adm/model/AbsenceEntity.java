@@ -7,17 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "absence")
 @SequenceGenerator(name = "absence_id_seq", sequenceName = "ABSENCE_ID_SEQ", allocationSize = 1, initialValue = 1)
-//@NamedQueries({ @NamedQuery(name = "absence.getAllAbsence", query = "SELECT u FROM UserEntity u ORDER BY u.username"),
-//		@NamedQuery(name = "user.findByUsername", query = "SELECT u FROM UserEntity u WHERE u.username = :username"),
-//		@NamedQuery(name = "user.update", query = "UPDATE UserEntity u SET u.role = :role, u.password = :password  WHERE u.id = :id") })
 public class AbsenceEntity implements Serializable {
 
 	private static final long serialVersionUID = 228155141263233185L;
@@ -31,7 +26,8 @@ public class AbsenceEntity implements Serializable {
 	private Date endHour;
 	private String reason;
 	private int status;
-
+	
+	
 	@Id
     @GeneratedValue(generator = "absence_id_seq", strategy = GenerationType.SEQUENCE)
 	public Long getId() {
