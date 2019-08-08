@@ -163,6 +163,7 @@ public class UsersService {
 		newUser.setRole(user.getRole());
 		UserDescriptionEntity userdescription = createUserDescription(user.getUserdescription());
 		newUser.setUserdescription(userdescription);
+		newUser.setSupervisorId(user.getSupervisorId());
 
 		userBean.create(newUser);
 		userdescription.setUser(newUser);
@@ -206,6 +207,7 @@ public class UsersService {
 		userEntity.setRole(user.getRole());
 		userEntity.getUserdescription().setName(user.getUserdescription().getName());
 		userEntity.getUserdescription().setAge(user.getUserdescription().getAge());
+		userEntity.setSupervisorId(user.getSupervisorId());
 		
 		if( userBean.updateUser(userEntity) > 0 && userDescriptionBean.updateUserDescription(userEntity.getUserdescription()) > 0) {
 			System.out.println("User data updated.");

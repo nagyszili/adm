@@ -1,5 +1,6 @@
 package com.msg.adm.gui.beans;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -23,7 +24,9 @@ public class EditUserView {
 
 	private String password1;
 	private String password2;
+	private User supervisor;
 	private User user;
+	private List<User> users;
 
 	@Inject
 	private UsersService usersService;
@@ -36,6 +39,9 @@ public class EditUserView {
 		System.out.println(userId);
 		try {
 			setUser(usersService.getUserById(userId));
+			setSupervisor(usersService.getUserById(user.getSupervisorId()));
+			setAllUser();
+			
 		} catch (AdministrationEntityNotFoundException e) {
 
 			addMessage("User wit id: " + userId + " does not exist!");
@@ -66,12 +72,47 @@ public class EditUserView {
 		this.user = user;
 	}
 
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+//		this.users.add(this.getSupervisor());
+//		this.users.addAll(users);
+		this.users = users;
+	}
+
+	public void setAllUser() {
+		this.setUsers(usersService.getAllUsers());
+	}
+
+	public User getSupervisor() {
+		return supervisor;
+	}
+
+	public void setSupervisor(User supervisor) {
+		this.supervisor = supervisor;
+	}
+
+	public User getSelectedUser(Long id) {
+		if (id == null) {
+			throw new IllegalArgumentException("no id provided");
+		}
+		for (User u : users) {
+			if (id.equals(u.getId())) {
+				return u;
+			}
+		}
+		return null;
+	}
+
 	public void editUser() {
 
 		if (password1.equals(password2) && password1.length() > 4) {
 
 			String hashPassword = usersService.passwordHash(password1, user.getUsername().getBytes());
 			user.setPassword(hashPassword);
+			user.setSupervisorId(supervisor.getId());
 
 			usersService.editUser(user);
 		}

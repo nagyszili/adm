@@ -24,6 +24,7 @@ public class AbsenceService {
 		newAbsenceEntity.setReason(absence.getReason());
 		newAbsenceEntity.setReplacementId(absence.getReplacementId());
 		newAbsenceEntity.setStatus(0);
+		newAbsenceEntity.setCreatedDate(absence.getCreatedDate());
 	
 		
 		absenceBean.create(newAbsenceEntity);

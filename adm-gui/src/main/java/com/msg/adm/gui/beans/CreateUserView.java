@@ -1,7 +1,9 @@
 package com.msg.adm.gui.beans;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -32,9 +34,18 @@ public class CreateUserView {
 	private String name;
 	private Integer age;
 
+	private User supervisor;
+	private List<User> users;
+
 	@Inject
 	private UsersService usersService;
-
+	
+	@PostConstruct
+    private void init() {
+		this.setAllUser();
+		
+	}
+	
 	public String getUsername() {
 		return username;
 	}
@@ -83,6 +94,38 @@ public class CreateUserView {
 		this.password2 = password2;
 	}
 
+	public User getSupervisor() {
+		return supervisor;
+	}
+
+	public void setSupervisor(User supervisor) {
+		this.supervisor = supervisor;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public void setAllUser() {
+		this.setUsers(usersService.getAllUsers());
+	}
+	
+    public User getSelectedUser(Long id) {
+        if (id == null){
+            throw new IllegalArgumentException("no id provided");
+        }
+        for (User user : users){
+            if (id.equals(user.getId())){
+                return user;
+            }
+        }
+        return null;
+    }
+
 	/**
 	 * Create a new User.
 	 * 
@@ -104,6 +147,7 @@ public class CreateUserView {
 			String hashPassword = usersService.passwordHash(password, username.getBytes());
 			user.setPassword(hashPassword);
 			user.setRole(EnumRoles.valueOf(role));
+			user.setSupervisorId(supervisor.getId());
 
 			try {
 				usersService.addUser(user);

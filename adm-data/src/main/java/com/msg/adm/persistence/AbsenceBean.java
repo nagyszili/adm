@@ -14,11 +14,9 @@ public class AbsenceBean {
 	@PersistenceContext(unitName = "edu.msg.Administration.postgres")
 	private EntityManager entityManager;
 
-//	private static EntityManager entityMgrObj = Persistence.createEntityManagerFactory("edu.msg.Administration.postgres").createEntityManager();
-
 	public void create(AbsenceEntity absenceEntity) {
 		try {
-//			entityMgrObj.persist(absenceEntity);
+
 			entityManager.persist(absenceEntity);
 		} catch (Exception e) {
 

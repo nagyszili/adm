@@ -9,13 +9,20 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
 @Table(name = "job")
 @SequenceGenerator(name = "job_id_seq", sequenceName = "JOB_ID_SEQ", allocationSize = 1, initialValue = 1)
+@NamedQueries({
+	@NamedQuery(name="job.update",query="UPDATE JobEntity j SET j.name=:name, j.description=:description WHERE j.id=:id")
+})
 public class JobEntity implements Serializable {
 
 	private static final long serialVersionUID = 8492850849406666141L;
+	
+	public static final String JOB_UPDATE = "job.update";
 
 	private Long id;
 	private String name;

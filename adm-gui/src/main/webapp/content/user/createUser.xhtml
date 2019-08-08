@@ -46,6 +46,21 @@
 				<p:inputText id="age" value="#{createUserView.age}" label="Age: "
 					required="true" />
 
+
+			<p:outputLabel for="supervisor" value="Supervisor:" />
+				<p:selectOneMenu id="supervisor" value="#{createUserView.supervisor}" var="u"  converter="userConverter" panelStyle="width:180px"
+                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+				
+					<f:selectItems value="#{createUserView.users}" var="user"
+						itemLabel="#{user.username}" itemValue="#{user}" />
+
+					<p:column>
+						<h:outputText value="#{u.username}" />
+					</p:column>
+					
+				</p:selectOneMenu> 
+
+
 			</h:panelGrid>
 
 			<p:commandButton value="Create User"

@@ -30,31 +30,31 @@ import com.msg.adm.model.enums.EnumRoles;
 @Entity
 @Table(name = "users")
 @SequenceGenerator(name = "user_id_seq", sequenceName = "USER_ID_SEQ", allocationSize = 1, initialValue = 1)
-@NamedQueries({ 
-    @NamedQuery(name = "user.getAllUsers", query = "SELECT u FROM UserEntity u ORDER BY u.username"),
-    @NamedQuery(name = "user.findByUsername", query = "SELECT u FROM UserEntity u WHERE u.username = :username"),
-    @NamedQuery(name = "user.update", query = "UPDATE UserEntity u SET u.role = :role, u.password = :password  WHERE u.id = :id")
-})
-public class UserEntity implements Serializable { 
+@NamedQueries({ @NamedQuery(name = "user.getAllUsers", query = "SELECT u FROM UserEntity u ORDER BY u.username"),
+		@NamedQuery(name = "user.findByUsername", query = "SELECT u FROM UserEntity u WHERE u.username = :username"),
+		@NamedQuery(name = "user.update", query = "UPDATE UserEntity u SET u.role = :role, u.password = :password  WHERE u.id = :id") })
+public class UserEntity implements Serializable {
 
 	public static final String USER_FIND_BY_USERNAME = "user.findByUsername";
 	public static final String GETALLUSERSQUERY = "user.getAllUsers";
 	public static final String USER_UPDATE = "user.update";
 
 	private static final long serialVersionUID = -1108205893692379782L;
-    private Long id;
+	private Long id;
 	private String username;
 	private EnumRoles role;
 	private String password;
 	private List<AppliedJobEntity> jobs = new ArrayList<AppliedJobEntity>();
 	private UserDescriptionEntity userdescription;
 	private List<MeetingEntity> meetings = new ArrayList<MeetingEntity>();
-	
+	private Long supervisorId;
+
 	@Id
-    @GeneratedValue(generator = "user_id_seq", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "user_id_seq", strategy = GenerationType.SEQUENCE)
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -62,29 +62,29 @@ public class UserEntity implements Serializable {
 	public String getUsername() {
 		return username;
 	}
-	
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	@Enumerated(EnumType.STRING)
 	public EnumRoles getRole() {
 		return role;
 	}
-	
+
 	public void setRole(EnumRoles role) {
 		this.role = role;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	public List<AppliedJobEntity> getJobs() {
 		return jobs;
 	}
@@ -93,8 +93,8 @@ public class UserEntity implements Serializable {
 		this.jobs = jobs;
 	}
 
-	@OneToOne(cascade=CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "userdescription_id", referencedColumnName = "id")
+	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	@JoinColumn(name = "userdescription_id", referencedColumnName = "id")
 	public UserDescriptionEntity getUserdescription() {
 		return userdescription;
 	}
@@ -104,13 +104,23 @@ public class UserEntity implements Serializable {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "usermeeting", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "meeting_id") })
+	@JoinTable(name = "usermeeting", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "meeting_id") })
 	public List<MeetingEntity> getMeetings() {
 		return meetings;
 	}
 
 	public void setMeetings(List<MeetingEntity> meetings) {
 		this.meetings = meetings;
+	}
+	
+	@Column(name="supervisorid")
+	public Long getSupervisorId() {
+		return supervisorId;
+	}
+
+	public void setSupervisorId(Long supervisorId) {
+		this.supervisorId = supervisorId;
 	}
 
 	@Override
@@ -138,7 +148,9 @@ public class UserEntity implements Serializable {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -147,5 +159,4 @@ public class UserEntity implements Serializable {
 				+ ", jobs=" + jobs + ", userdescription=" + userdescription + ", meetings=" + meetings + "]";
 	}
 
-	
 }

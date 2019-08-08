@@ -18,6 +18,7 @@ public class User extends AbstractPojo {
 	private List<AppliedJob> jobs;
 	private UserDescription userdescription;
 	private List<Meeting> meetings;
+	private Long supervisorId;
 	
 	/**
 	 * Standard Constructor.
@@ -118,7 +119,14 @@ public class User extends AbstractPojo {
 	public void setMeetings(List<Meeting> meetings) {
 		this.meetings = meetings;
 	}
-	
+
+	public Long getSupervisorId() {
+		return supervisorId;
+	}
+
+	public void setSupervisorId(Long supervisorId) {
+		this.supervisorId = supervisorId;
+	}
 
 	/**
 	 * Returns an {@link User} Transfer Object from the {@link UserEntity}.
@@ -135,9 +143,12 @@ public class User extends AbstractPojo {
 		user.setUserdescription( UserDescription.getUserDescriptionWithoutUser(userEntity.getUserdescription()) );
 		user.setJobs(userEntity.getJobs().stream().map(j -> AppliedJob.getAppliedJob(j)).collect(Collectors.toList()));
 		user.setMeetings(userEntity.getMeetings().stream().map(m -> Meeting.getMeeting(m)).collect(Collectors.toList()));
+		user.setSupervisorId(userEntity.getSupervisorId());
 		
 		return user;
 	}
+	
+		
 	
 	
 	

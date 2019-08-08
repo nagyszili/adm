@@ -37,7 +37,7 @@ public class AbsenceEntity implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public Long getUserId() {
 		return userId;
 	}
@@ -45,7 +45,7 @@ public class AbsenceEntity implements Serializable {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-
+	
 	public Long getReplacementId() {
 		return replacementId;
 	}
@@ -69,7 +69,7 @@ public class AbsenceEntity implements Serializable {
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-
+	
 	public Date getStartHour() {
 		return startHour;
 	}
