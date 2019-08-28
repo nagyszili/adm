@@ -19,18 +19,29 @@
 
 		<p:growl id="growl" showDetail="true" life="3000" />
 
-		<p:commandButton value="Add"
+		<p:commandButton value="Create User"
 			actionListener="#{administrationView.addUserAction}" id="addUserId"
 			update="growl" style="margin-right:20px;" title="Add User" />
-		<p:commandButton value="Delete"
-			action="#{administrationView.deleteUserAction}" id="deleteUserId"
-			update="growl" style="margin-right:20px;" title="Delete User" />
-		<p:commandButton value="Absence"
-			action="#{administrationView.absenceAction}" update="growl"
+
+		<p:commandButton value="Create Absence"
+			action="#{administrationView.createAbsence}" update="growl"
 			style="margin-right:20px;" />
+
 		<p:commandButton value="Create Job"
 			action="#{administrationView.createJob}" update="growl"
 			style="margin-right:20px;" />
+
+		<p:commandButton value="My Absences"
+			action="#{administrationView.listAbsence}" update="growl"
+			style="margin-right:20px;" />
+
+		<p:commandButton value="Absences to Decide"
+			action="#{administrationView.supervisorAbsence}" update="growl"
+			style="margin-right:20px;" />
+
+		<p:commandButton value="Delete"
+			action="#{administrationView.deleteUserAction}" id="deleteUserId"
+			update="growl" style="margin-right:20px;" title="Delete User" />
 
 
 		<p:dataTable id="usersTableId" var="user"

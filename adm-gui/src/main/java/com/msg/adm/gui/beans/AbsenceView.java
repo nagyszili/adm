@@ -1,7 +1,10 @@
 package com.msg.adm.gui.beans;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -26,11 +29,43 @@ public class AbsenceView {
 	private Long replacementId;
 	private Long userId;
 
+	private List<Absence> absenceList = new ArrayList<Absence>();
+
 	@Inject
 	private AbsenceService absenceService;
-	
+
 	@Inject
 	private UsersService usersService;
+
+	@PostConstruct
+	public void init() {
+
+		User user = null;
+
+		FacesContext context = FacesContext.getCurrentInstance();
+		String uname = (String) context.getExternalContext().getApplicationMap().get("username");
+
+		try {
+
+			user = usersService.getUserByUsername(uname);
+			this.setUserId(user.getId());
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		absenceList = absenceService.getAbsenceByUserId(userId);
+
+	}
+
+	public List<Absence> getAbsenceList() {
+		return absenceList;
+	}
+
+	public void setAbsenceList(List<Absence> absenceList) {
+		this.absenceList = absenceList;
+	}
 
 	public Date getStartDate() {
 		return startDate;
@@ -81,24 +116,10 @@ public class AbsenceView {
 	}
 
 	public void addAbsence() {
-		
-		User user = null;
+
 		Absence absence = new Absence();
-		String username = null;
-		Long userid = null;
-		try {
-			HttpSession session = SessionUtils.getSession();
-			username = ((SessionUtils) session).getUserName();
-			userid = ((SessionUtils) session).getUserId();
-//			user = usersService.getUserByUsername(username);
-			user = usersService.getUserById(userid);
-//			this.setUserId(user.getId());
 
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-		absence.setUserId(userid);
+		absence.setUserId(userId);
 		absence.setStartDate(startDate);
 		absence.setStartHour(startHour);
 		absence.setEndHour(endHour);

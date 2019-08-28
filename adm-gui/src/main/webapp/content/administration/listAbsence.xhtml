@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+
+	<h:form id="listAbsence">
+
+		<p:growl id="growl" showDetail="true" life="3000" />
+
+		<p:dataTable id="absenceTableId" var="absence"
+			value="#{absenceView.absenceList}">
+
+			<p:column headerText="Date">
+				<h:outputText value="#{absence.startDate}">
+					<f:convertDateTime pattern="yyyy.MM.dd" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Start Hour">
+				<h:outputText value="#{absence.startHour}">
+					<f:convertDateTime pattern="HH:mm" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="End Hour">
+				<h:outputText value="#{absence.endHour}">
+					<f:convertDateTime pattern="HH:mm" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Created At">
+				<h:outputText value="#{absence.createdDate}">
+					<f:convertDateTime pattern="yyyy.MM.dd" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Reason">
+				<h:outputText value="#{absence.reason}"/>
+			</p:column>
+
+			<p:column headerText="Status">
+				<h:outputText value="#{absence.status}" />
+			</p:column>
+
+		</p:dataTable>
+
+	</h:form>
+
+</h:body>
+</html>

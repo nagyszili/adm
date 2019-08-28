@@ -75,12 +75,17 @@ public class UserLoginView {
 			loggedIn = true;
 			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
 			
-			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username", username);
-			session.setAttribute("userid", user.getId());
+//			HttpSession session = SessionUtils.getSession();
+//			session.setAttribute("username", username);
+//			session.setAttribute("userid", user.getId());
 //			return "admin";
+//			String uname = SessionUtils.getUserName();
+//			System.out.print(uname);
 			
 			FacesContext context = FacesContext.getCurrentInstance();
+			context.getExternalContext().getApplicationMap().put("username", username);
+			String uname = (String) context.getExternalContext().getApplicationMap().get("username");
+			System.out.print(uname);
 			context.getExternalContext().redirect("content/administration/administration.xhtml");
 			
 //			context = FacesContext.getCurrentInstance().getExternalContext();

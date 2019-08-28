@@ -98,7 +98,7 @@ public class AdministrationView {
 		}
 	}
 
-	public void absenceAction() {
+	public void createAbsence() {
 		try {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.getExternalContext().redirect("../../content/administration/createAbsence.xhtml");
@@ -107,7 +107,7 @@ public class AdministrationView {
 			addMessage(e.getMessage());
 		}
 	}
-	
+
 	public void createJob() {
 		try {
 			FacesContext context = FacesContext.getCurrentInstance();
@@ -116,6 +116,28 @@ public class AdministrationView {
 		} catch (IOException e) {
 			addMessage(e.getMessage());
 		}
+	}
+
+	public void listAbsence() {
+		try {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.getExternalContext().redirect("../../content/administration/listAbsence.xhtml");
+
+		} catch (IOException e) {
+			addMessage(e.getMessage());
+		}
+
+	}
+
+	public void supervisorAbsence() {
+		try {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.getExternalContext().redirect("../../content/administration/listSupervisorAbsence.xhtml");
+
+		} catch (IOException e) {
+			addMessage(e.getMessage());
+		}
+
 	}
 
 	/**

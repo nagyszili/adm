@@ -1,5 +1,8 @@
 package com.msg.adm.business;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -28,5 +31,17 @@ public class AbsenceService {
 	
 		
 		absenceBean.create(newAbsenceEntity);
+	}
+	
+	public List<Absence> getAbsenceByUserId(Long userId) {
+		List<AbsenceEntity> absenceEntities = absenceBean.getAbsenceByUserId(userId);
+		
+		return absenceEntities.stream().map(ae -> Absence.getAbsence(ae)).collect(Collectors.toList());
+	}
+	
+	public List<Absence> getAbsenceBySupervisorId(Long userId) {
+		List<AbsenceEntity> absenceEntities = absenceBean.getAbsenceBySupervisorId(userId);
+		
+		return absenceEntities.stream().map(ae -> Absence.getAbsence(ae)).collect(Collectors.toList());
 	}
 }

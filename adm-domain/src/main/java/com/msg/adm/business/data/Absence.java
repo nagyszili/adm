@@ -2,6 +2,8 @@ package com.msg.adm.business.data;
 
 import java.util.Date;
 
+import com.msg.adm.model.AbsenceEntity;
+
 public class Absence extends AbstractPojo {
 
 	private Long userId;
@@ -83,6 +85,23 @@ public class Absence extends AbstractPojo {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public static Absence getAbsence(AbsenceEntity absenceEntity) {
+
+		Absence absence = new Absence();
+		
+		absence.setId(absenceEntity.getId());
+		absence.setUserId(absenceEntity.getUserId());
+		absence.setCreatedDate(absenceEntity.getCreatedDate());
+		absence.setStartDate(absenceEntity.getStartDate());
+		absence.setStartHour(absenceEntity.getStartHour());
+		absence.setEndHour(absenceEntity.getEndHour());
+		absence.setReplacementId(absenceEntity.getReplacementId());
+		absence.setReason(absenceEntity.getReason());
+		absence.setStatus(absenceEntity.getStatus());
+
+		return absence;
 	}
 
 }
